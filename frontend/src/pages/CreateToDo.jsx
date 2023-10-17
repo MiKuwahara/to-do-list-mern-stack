@@ -3,11 +3,13 @@ import BackButton from "../components/BackButton.jsx";
 import Spinner from "../components/Spinner.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const CreateToDo = () => {
     const [toDo, setToDo] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleSaveToDo = () => {
         const data = {
@@ -19,13 +21,13 @@ const CreateToDo = () => {
             .post('http://localhost:5555/todolist', data)
             .then(() => {
                 setLoading(false);
-                //enqueueSnackbar('Book Created successfully', { variant: 'success' });
+                enqueueSnackbar('Task created successfully', { variant: 'success' });
                 navigate('/');
             })
             .catch((error) => {
                 setLoading(false);
-                alert('An error happened. Please Chack console');
-                //enqueueSnackbar('Error', { variant: 'error' });
+                //alert('An error happened. Please Chack console');
+                enqueueSnackbar('Error', { variant: 'error' });
                 console.log(error);
             });
     };
@@ -33,7 +35,7 @@ const CreateToDo = () => {
     return (
         <div className="p-4">
             <BackButton />
-            <h1 class="text-3xl my-4">Create Book</h1>
+            <h1 class="text-3xl my-4">Create ToDo</h1>
             {loading ? <Spinner /> : ""}
             <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
                 <div className="my-4">
