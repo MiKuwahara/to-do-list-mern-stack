@@ -41,7 +41,8 @@ const Home = () => {
                         <tr>
                             <th className="border border-slate-600 rounded-md">No</th>
                             <th className="border border-slate-600 rounded-md">Task Name</th>
-                            <th className="border border-slate-600 rounded-md">Operations</th>
+                            <th className="border border-slate-600 rounded-md">Edit</th>
+                            <th className="border border-slate-600 rounded-md">Remove</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,20 +54,23 @@ const Home = () => {
                                 <td className='border border-slate-700 rounded-md text-center'>
                                     {toDo.taskName}
                                 </td>
-                                
+
                                 <td className='border border-slate-700 rounded-md text-center'>
                                     <div className='flex justify-center gap-x-4'>
-                                        <Link to={`/books/details/${toDo._id}`}>
-                                            <BsInfoCircle className='text-2xl text-green-800' />
-                                        </Link>
-                                        <Link to={`/books/edit/${toDo._id}`}>
+                                        <Link to={`/todolist/edit/${toDo._id}`}>
                                             <AiOutlineEdit className='text-2xl text-yellow-600' />
                                         </Link>
+                                    </div>
+                                </td>
+                                <td className='border border-slate-700 rounded-md text-center'>
+                                    <div className='flex justify-center gap-x-4'>
                                         <Link to={`/todolist/delete/${toDo._id}`}>
                                             <MdOutlineDelete className='text-2xl text-red-600' />
                                         </Link>
                                     </div>
                                 </td>
+
+
                             </tr>
                         ))}
                     </tbody>
